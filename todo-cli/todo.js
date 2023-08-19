@@ -42,7 +42,7 @@ const todoList = () => {
            if(i==0){
                a+="[x]"+" "+ list[i].title+" "+"\n"
            }else{
-               a+="[ ]"+" "+ list[i].title+" "+"\n"
+               a+="[ ]"+" "+ list[i].title;
            }
           
        }
