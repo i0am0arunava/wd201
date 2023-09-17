@@ -81,7 +81,7 @@ describe("Todo Application", function () {
   const a = JSON.parse(response.text);
   
   const i=a.id;
-  const deleteres=await agent.delete(`DELETE/todos/${i}`).send();
+  const deleteres=await agent.delete(`/todos/${i}`).send();
   const c=JSON.parse(deleteres.text);
   expect(c).toBe(true);
   });
