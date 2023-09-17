@@ -72,7 +72,7 @@ app.delete("/todos/:id", async function (request, response) {
         },
       
     });
-    response.send(true)
+    response.send(deleted ? true : false);
  
 }catch (error){ 
     response.send(false)
