@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
     static addTodo({title,duedate}){
-      return this.create({title: title,dueDate:dueDate,completed:false})
+      return this.create({title: title,duedate:duedate,markAsComplete:false})
     }
     static getTodo(){
       return this.findAll();
@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Todo.init({
     title: DataTypes.STRING,
-    dueDate: DataTypes.DATEONLY,
-    completed: DataTypes.BOOLEAN
+    duedate: DataTypes.DATEONLY,
+    markAsComplete: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Todo',
