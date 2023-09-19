@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
     static addTodo({title,duedate}){
-      return this.create({title: title,duedate:duedate,completed:false})
+      return this.create({title: title,dueDate:dueDate,completed:false})
     }
     static getTodo(){
       return this.findAll();
