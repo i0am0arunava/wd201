@@ -13,13 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
     static addTodo({title,duedate}){
-      return this.create({title: title,duedate:duedate,markAsComplete:false})
+      return this.create({title: title,duedate:duedate,completed:false})
     }
     static getTodo(){
       return this.findAll();
     }
     markAsCompleted (){
-      return this.update({markAsComplete:true})
+      return this.update({ completed:true})
     }
   }
   Todo.init({
