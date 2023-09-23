@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 
 app.set("view engine","ejs");
 app.get("/", async (reqest,response)=>{
-    const allTodos = await Todo.getTodo()
+    const allTodos = await Todo.overdue()
     if(reqest.accepts("html")){
         response.render('index',{
             allTodos
@@ -19,6 +19,7 @@ app.get("/", async (reqest,response)=>{
     }
 response.render('index');
 });
+
 app.use(express.static(path.join(__dirname,'public')))
 app.post("/arun",async (request,response)=>{
     try{
