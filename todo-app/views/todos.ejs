@@ -13,7 +13,7 @@
             %>
            <li class="Todo-Item">
                <div class="flex item-center w-fit my-2 px-2 py-1  hover:bg-purple-50">
-<input id="<%= overdue[i].id %>" type="checkbox" <%= overdue[i].completed? "checked" : "" %> onclick="updateTodo(<%= overdue[i].id %>)"class="w-4 h-4 text-blue-600 bg-gray">
+<input id="<%= overdue[i].id %>" type="checkbox" <%= overdue[i].markAsComplete? "checked" : "" %> onclick="updateTodo(<%= overdue[i].id %>)"class="w-4 h-4 text-blue-600 bg-gray">
            <label for="<%= overdue[i].id %>" class="ml-2 test-sm ">
 
                <%=  overdue[i].title %> <br></label>
@@ -34,7 +34,7 @@
                     %>
                    <li class="Todo-Item">
                        <div class="flex item-center w-fit my-2 px-2 py-1  hover:bg-purple-50">
-     <input id="<%= dueToday[j].id %>"type="checkbox" <%= dueToday[j].completed? "checked" : "" %> onclick="updateTodo(<%= dueToday[j].id %>)" class="w-4 h-4 text-blue-600 bg-gray">
+     <input id="<%= dueToday[j].id %>"type="checkbox" <%= dueToday[j].markAsComplete? "checked" : "" %> onclick="updateTodo(<%= dueToday[j].id %>)" class="w-4 h-4 text-blue-600 bg-gray">
                    <label for="<%= dueToday[j].id %>" class="ml-2 test-sm">
        
                        <%=  dueToday[j].title %> <br></label>
@@ -56,7 +56,7 @@
                           %>
                       <li class="Todo-Item">
                           <div class="flex item-center w-fit my-2 px-2 py-1  hover:bg-purple-50">
-        <input id="<%= dueLater [k].id %>"type="checkbox" <%= dueLater [k].completed? "checked" : "" %> onclick="updateTodo(<%= dueLater [k].id %>)" class="w-4 h-4 text-blue-600 bg-gray">
+        <input id="<%= dueLater [k].id %>"type="checkbox" <%= dueLater [k].markAsComplete? "checked" : "" %> onclick="updateTodo(<%= dueLater [k].id %>)" class="w-4 h-4 text-blue-600 bg-gray">
                       <label for="<%= dueLater [k].id %>" class="ml-2 test-sm">
           
                           <%=  dueLater [k].title %> <br></label>
@@ -81,7 +81,7 @@
                           %>
                          <li class="Todo-Item">
                              <div class="flex item-center w-fit my-2 px-2 py-1  hover:bg-purple-50">
-              <input id="<%= completedItems[i].id %>" type="checkbox" <%= completedItems[i].completed? "checked" : "" %> onclick="updateTodo(<%= completedItems[i].id %>)"class="w-4 h-4 text-blue-600 bg-gray">
+              <input id="<%= completedItems[i].id %>" type="checkbox" <%= completedItems[i].markAsComplete? "checked" : "" %> onclick="updateTodo(<%= completedItems[i].id %>)"class="w-4 h-4 text-blue-600 bg-gray">
                          <label for="<%= completedItems[i].id %>" class="ml-2 test-sm ">
               
                              <%=  completedItems[i].title %> <br></label>

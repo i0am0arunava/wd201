@@ -20,7 +20,7 @@ describe("todo test suite", () => {
   test("respond with json at /todos", async () => {
     const res = await agent.get("/");
     const csrfToken = extractCsrfToken(res);
-    const response = await agent.post('/todos').send({
+    const response = await agent.post('/arun').send({
       'title': 'buy chocolate',
       'duedate': new Date().toISOString(),
       completed: false,
@@ -33,7 +33,7 @@ describe("todo test suite", () => {
   test("Marks a todo with the given ID as complete", async () => {
     let res = await agent.get("/");
     let csrfToken = extractCsrfToken(res);
-    const response = await agent.post("/todos").send({
+    const response = await agent.post("/arun").send({
       title: "buy icecream",
       duedate: new Date().toISOString(),
       markAsComplete: false,
@@ -49,7 +49,7 @@ describe("todo test suite", () => {
     res = await agent.get("/");
     csrfToken = extractCsrfToken(res);
 
-    const markCompleteResponse = await agent.put(`/todos/${lastItem.id}`).send({
+    const markCompleteResponse = await agent.put(`/arun/${lastItem.id}/markAsCompleted`).send({
       _csrf: csrfToken,
     });
 
@@ -60,7 +60,7 @@ describe("todo test suite", () => {
   test("Marks a todo with the given ID as incomplete", async () => {
     let res = await agent.get("/");
     let csrfToken = extractCsrfToken(res);
-    const response = await agent.post("/todos").send({
+    const response = await agent.post("/arun").send({
       title: "buy icecream",
       duedate: new Date().toISOString(),
       markAsComplete: false,
@@ -76,7 +76,7 @@ describe("todo test suite", () => {
     res = await agent.get("/");
     csrfToken = extractCsrfToken(res);
 
-    const markCompleteResponse = await agent.put(`/todos/${lastItem.id}`).send({
+    const markCompleteResponse = await agent.put(`/arun/${lastItem.id}/markAsCompleted`).send({
       _csrf: csrfToken,
     });
 
@@ -86,7 +86,7 @@ describe("todo test suite", () => {
     res = await agent.get("/");
     csrfToken = extractCsrfToken(res);
 
-    const markIncompleteResponse = await agent.put(`/todos/${lastItem.id}`).send({
+    const markIncompleteResponse = await agent.put(`/arun/${lastItem.id}/markAsCompleted`).send({
       _csrf: csrfToken,
     });
     parsedResponse = JSON.parse(markIncompleteResponse.text);
@@ -99,7 +99,7 @@ describe("todo test suite", () => {
     // FILL IN YOUR CODE HERE
     let res = await agent.get("/");
     let csrfToken = extractCsrfToken(res);
-    const response = await agent.post('/todos').send({
+    const response = await agent.post('/arun').send({
       'title': 'drink',
       'duedate': new Date().toISOString(),
       markAsComplete: false,
@@ -116,7 +116,7 @@ describe("todo test suite", () => {
     csrfToken = extractCsrfToken(res);
 
 
-    const deleteres = await agent.delete(`/todos/${lastItem.id}`).send({
+    const deleteres = await agent.delete(`/arun/${lastItem.id}`).send({
       _csrf: csrfToken,
     });
     const c = JSON.parse(deleteres.text);

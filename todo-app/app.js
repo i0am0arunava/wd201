@@ -40,10 +40,10 @@ app.get("/", async (reqest, response) => {
 
 app.use(express.static(path.join(__dirname, 'public')))
 //middileware
-app.post("/todos", async (request, response) => {
+app.post("/arun", async (request, response) => {
     try {
         console.log("creating a todo", request.body)
-        const todo = await Todo.addTodo({ title: request.body.title, dueDate: request.body.dueDate, completed: false });
+        const todo = await Todo.addTodo({ title: request.body.title, duedate: request.body.duedate, markAsComplete: false });
         return response.redirect("/")
 
     } catch (error) {
@@ -52,13 +52,13 @@ app.post("/todos", async (request, response) => {
     }
 });
 
-app.put("/todos/:id", async (request, response) => {
+app.put("/arun/:id/markAsCompleted", async (request, response) => {
 
     const todo = await Todo.findByPk(request.params.id);
     console.log(request.params.id)
     try {
 
-        const updatetodo = await todo.setCompletionStatus();
+        const updatetodo = await todo.markAsCompleted();
         return response.json(updatetodo)
 
     } catch (error) {
@@ -66,7 +66,7 @@ app.put("/todos/:id", async (request, response) => {
         return response.status(422).json(error)
     }
 });
-app.get("/todos", async (request, response) => {
+app.get("/arun", async (request, response) => {
 
     const todo = await Todo.findAll();
     try {
@@ -78,7 +78,7 @@ app.get("/todos", async (request, response) => {
         return response.status(422).json(error)
     }
 });
-app.delete("/todos/:id", async (request, response) => {
+app.delete("/arun/:id", async (request, response) => {
 
 
     try {
