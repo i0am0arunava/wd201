@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.post("/todos", async (request, response) => {
     try {
         console.log("creating a todo", request.body)
-        const todo = await Todo.addTodo({ title: request.body.title, duedate: request.body.duedate, markAsComplete: false });
+        const todo = await Todo.addTodo({ title: request.body.title, dueDate: request.body.dueDate, completed: false });
         return response.redirect("/")
 
     } catch (error) {

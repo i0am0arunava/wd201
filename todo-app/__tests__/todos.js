@@ -22,7 +22,7 @@ describe("todo test suite", () => {
     const csrfToken = extractCsrfToken(res);
     const response = await agent.post('/todos').send({
       'title': 'buy chocolate',
-      'duedate': new Date().toISOString(),
+      'dueDate': new Date().toISOString(),
       completed: false,
       "_csrf": csrfToken
 
@@ -35,8 +35,8 @@ describe("todo test suite", () => {
     let csrfToken = extractCsrfToken(res);
     const response = await agent.post("/todos").send({
       title: "buy icecream",
-      duedate: new Date().toISOString(),
-      markAsComplete: false,
+      dueDate: new Date().toISOString(),
+      completed: false,
       "_csrf": csrfToken
     });
 
@@ -54,7 +54,7 @@ describe("todo test suite", () => {
     });
 
     const parsedUpdateResponse = JSON.parse(markCompleteResponse.text);
-    expect(parsedUpdateResponse.markAsComplete).toBe(true);
+    expect(parsedUpdateResponse.completed).toBe(true);
   });
 
   test("Marks a todo with the given ID as incomplete", async () => {
@@ -62,8 +62,8 @@ describe("todo test suite", () => {
     let csrfToken = extractCsrfToken(res);
     const response = await agent.post("/todos").send({
       title: "buy icecream",
-      duedate: new Date().toISOString(),
-      markAsComplete: false,
+      dueDate: new Date().toISOString(),
+      completed: false,
       "_csrf": csrfToken
     });
 
@@ -81,7 +81,7 @@ describe("todo test suite", () => {
     });
 
     const parsedUpdateResponse = JSON.parse(markCompleteResponse.text);
-    expect(parsedUpdateResponse.markAsComplete).toBe(true);
+    expect(parsedUpdateResponse.completed).toBe(true);
 
     res = await agent.get("/");
     csrfToken = extractCsrfToken(res);
@@ -90,7 +90,7 @@ describe("todo test suite", () => {
       _csrf: csrfToken,
     });
     parsedResponse = JSON.parse(markIncompleteResponse.text);
-    expect(parsedResponse.markAsComplete).toBe(false);
+    expect(parsedResponse.completed).toBe(false);
 
   });
 
@@ -101,8 +101,8 @@ describe("todo test suite", () => {
     let csrfToken = extractCsrfToken(res);
     const response = await agent.post('/todos').send({
       'title': 'drink',
-      'duedate': new Date().toISOString(),
-      markAsComplete: false,
+      'dueDate': new Date().toISOString(),
+      completed: false,
       "_csrf": csrfToken
 
     });

@@ -15,17 +15,17 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
 
-    static addTodo({ title, duedate }) {
-      return Todo.create({ title: title, duedate: duedate, markAsComplete: false })
+    static addTodo({ title, dueDate }) {
+      return Todo.create({ title: title, dueDate: dueDate, completed: false })
     }
 
     static async overdue() {
       return await Todo.findAll({
         where: {
-          duedate: {
+          dueDate: {
             [Op.lt]: new Date().toLocaleDateString("en-CA"),
           },
-          markAsComplete: false
+          completed: false
         },
         order: [["id", "ASC"]],
       });
@@ -35,20 +35,20 @@ module.exports = (sequelize, DataTypes) => {
 
       return await Todo.findAll({
         where: {
-          duedate: {
+          dueDate: {
             [Op.gt]: new Date(),
           },
-          markAsComplete: false
+          completed: false
         }
       });
     }
     static dueToday() {
       return this.findAll({
         where: {
-          duedate: {
+          dueDate: {
             [Op.eq]: new Date().toLocaleDateString("en-CA"),
           },
-          markAsComplete: false
+          completed: false
 
         },
         order: [["id", "ASC"]],
@@ -57,24 +57,24 @@ module.exports = (sequelize, DataTypes) => {
     static async completedItems() {
       return await Todo.findAll({
         where: {
-          markAsComplete: true,
+          completed: true,
         },
         order: [["id", "ASC"]],
       });
     }
     setCompletionStatus() {
-      if (this.markAsComplete == true) {
-        return this.update({ markAsComplete: false })
+      if (this.completed == true) {
+        return this.update({ completed: false })
       }
-      else if (this.markAsComplete == false) {
-        return this.update({ markAsComplete: true })
+      else if (this.completed == false) {
+        return this.update({ completed: true })
       }
     }
   }
   Todo.init({
     title: DataTypes.STRING,
-    duedate: DataTypes.DATEONLY,
-    markAsComplete: DataTypes.BOOLEAN
+    dueDate: DataTypes.DATEONLY,
+    completed: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Todo',

@@ -12,10 +12,10 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      duedate: {
+      dueDate: {
         type: Sequelize.DATEONLY
       },
-      markAsComplete: {
+      completed: {
         type: Sequelize.BOOLEAN
       },
       createdAt: {
