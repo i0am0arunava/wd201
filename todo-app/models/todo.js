@@ -62,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
         order: [["id", "ASC"]],
       });
     }
-    markAsCompleted() {
+    setCompletionStatus() {
       if (this.markAsComplete == true) {
         return this.update({ markAsComplete: false })
       }
