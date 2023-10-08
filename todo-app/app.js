@@ -16,8 +16,11 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser("ssh! some secret string"));
 app.use(csrf({ cookie: true }))
-app.use(flash());
 app.set("view engine", "ejs");
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use(flash());
 app.use(session({
     secret: "arunava-369",
     cookie: {
@@ -59,14 +62,17 @@ passport.deserializeUser((id,done)=>{
         done(null,user)
     })
 });
-app.get("/", async (reqest, response) => {
+app.get("/", async function (reqest, response) {
+    if(reqest.user){
+        response.redirect("/todos")
+    }else{
+        response.render('index', {
 
-    response.render('index', {
+            csrfToken: reqest.csrfToken()
 
-        csrfToken: reqest.csrfToken()
+        });
+    }
 
-    });
-    
 });
 app.get("/todos",connectEnsureLogin.ensureLoggedIn(),  async (reqest, response) => {
 
@@ -159,8 +165,7 @@ app.get("/signout",(req,res,next)=>{
         }
     })
 })
-app.use(express.static(path.join(__dirname, 'public')))
-//middileware
+
 app.post("/todos",connectEnsureLogin.ensureLoggedIn(), async (request, response) => {
     if(request.body.title==""){
         request.flash("error","To-Dos cannot be blank");
