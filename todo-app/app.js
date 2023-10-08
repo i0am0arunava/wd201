@@ -155,7 +155,7 @@ app.get("/signout",(req,res,next)=>{
         if(err){return next(err)}
         else{
        
-            res.redirect("/login")
+            res.redirect("/")
         }
     })
 })
