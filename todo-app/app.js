@@ -125,7 +125,7 @@ app.post("/users", async (request, response) => {
             if(err){
                 console.log(err)
             }
-            request.flash("success","welcome for sigin up")
+           
             response.redirect("/todos")
         })
        
@@ -146,7 +146,7 @@ app.post(
     }),
     function (request, response) {
     
-      request.flash("success","welcome")
+      
       response.redirect("/todos");
     }
   );
